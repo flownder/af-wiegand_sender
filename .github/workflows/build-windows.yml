@@ -19,13 +19,13 @@ jobs:
 
     # 2. Устанавливаем Qt
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
-        version: '6.5.3'               # Укажите нужную вам версию Qt
+        aqtversion: '==3.1.19'
+        version: '5.15.2'               # Укажите нужную вам версию Qt
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'      # Архитектура (win64_mingw_64, если хотите MinGW)
-        modules: 'qtbase'              # Добавьте нужные модули через пробел, например: 'qtcharts qtmultimedia'
 
     # 3. Настраиваем CMake
     - name: Configure CMake
