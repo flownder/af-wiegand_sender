@@ -46,7 +46,18 @@ jobs:
     - name: Package Application
       run: |
         mkdir ReleasePackage
+        
         Copy-Item -Path "build/Release/*" -Destination "ReleasePackage" -Recurse
+        $qmqttDll = "build\_deps\qmqtt-build\Release\qmqtt.dll"
+        if (Test-Path $qmqttDll) {
+            Copy-Item -Path $qmqttDll -Destination "ReleasePackage\"
+            Write-Host "qmqtt.dll successfully copied!"
+        } else {
+            Write-Host "Warning: qmqtt.dll not found at expected path. Checking alternative..."
+            # Запасной вариант поиска
+            Get-ChildItem -Path "build" -Filter "qmqtt.dll" -Recurse | Copy-Item -Destination "ReleasePackage\"
+        }
+        
         Compress-Archive -Path "ReleasePackage\*" -DestinationPath "af_weigand_sender_Windows.zip"
 
     # 3. Обновлено до v4 (поддерживает Node 24)
