@@ -1,0 +1,44 @@
+name: Build Qt App for Windows
+
+# Триггеры: когда запускать этот скрипт
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-windows:
+    name: Сборка под Windows
+    runs-on: windows-latest # GitHub предоставит свежую Windows Server
+
+    steps:
+    # 1. Скачиваем ваш код из репозитория
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # 2. Устанавливаем Qt
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v3
+      with:
+        version: '6.5.3'               # Укажите нужную вам версию Qt
+        host: 'windows'
+        target: 'desktop'
+        arch: 'win64_msvc2019_64'      # Архитектура (win64_mingw_64, если хотите MinGW)
+        modules: 'qtbase'              # Добавьте нужные модули через пробел, например: 'qtcharts qtmultimedia'
+
+    # 3. Настраиваем CMake
+    - name: Configure CMake
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+    # 4. Собираем проект
+    - name: Build
+      run: cmake --build build --config Release
+
+    # 5. Упаковываем и сохраняем готовый .exe файл (Артефакт)
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: MyApp-Windows-Release    # Имя архива, который вы скачаете
+        path: build/Release/*.exe      # Путь к вашему .exe файлу (скорректируйте под свой проект)
+        retention-days: 7              # Сколько дней хранить файл (макс. 90)
