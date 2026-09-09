@@ -2,6 +2,30 @@ cmake_minimum_required(VERSION 3.16)
 
 project(af_weigand_sender VERSION 0.1 LANGUAGES CXX)
 
+# ---------------------------------------------------------
+# 1. Подключаем QMQTT через FetchContent
+# ---------------------------------------------------------
+include(FetchContent)
+
+# Отключаем сборку примеров и тестов из qmqtt, чтобы ускорить сборку
+set(QMQTT_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
+set(QMQTT_BUILD_TESTS OFF CACHE BOOL "" FORCE)
+
+# ВАЖНО: Отключаем SSL, если он вам не нужен. 
+# Сборка OpenSSL под Windows в CI — это отдельная головная боль.
+# Если вам нужен wss:// (MQTT over SSL), эту строку нужно убрать, 
+# но тогда придется отдельно устанавливать OpenSSL через vcpkg или choco.
+set(QMQTT_BUILD_WITH_SSL OFF CACHE BOOL "" FORCE) 
+
+FetchContent_Declare(
+    qmqtt
+    GIT_REPOSITORY https://github.com/emqx/qmqtt.git
+    GIT_TAG master # Рекомендуется указать конкретный тег, например 'v1.0.0', для стабильности
+)
+
+FetchContent_MakeAvailable(qmqtt)
+# ---------------------------------------------------------
+
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -41,8 +65,6 @@ else()
             src/mqtt_client.cpp
             src/mqtt_client.h
             src/serialworker.h src/serialworker.cpp
-
-
         )
     endif()
 endif()
