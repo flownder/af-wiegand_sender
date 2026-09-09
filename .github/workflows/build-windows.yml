@@ -19,7 +19,7 @@ jobs:
 
     # 2. Устанавливаем Qt
     - name: Install Qt
-      uses: jurplel/install-qt-action@v3
+      uses: jurplel/install-qt-action@v4
       with:
         version: '5.15.16'               # Укажите нужную вам версию Qt
         host: 'windows'
