@@ -34,11 +34,22 @@ jobs:
     # 4. Собираем проект
     - name: Build
       run: cmake --build build --config Release
+      
+    - name: Deploy Qt Dependencies
+      run: |
+        cd build/Release
+        windeployqt af_weigand_sender.exe --no-compiler-runtime --no-system-d3d-compiler
+
+    - name: Package Application
+      run: |
+        mkdir ReleasePackage
+        Copy-Item -Path "build/Release/*" -Destination "ReleasePackage" -Recurse
+        Compress-Archive -Path "ReleasePackage\*" -DestinationPath "af_weigand_sender_Windows.zip"
 
     # 5. Упаковываем и сохраняем готовый .exe файл (Артефакт)
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: MyApp-Windows-Release    # Имя архива, который вы скачаете
-        path: build/Release/*.exe      # Путь к вашему .exe файлу (скорректируйте под свой проект)
-        retention-days: 7              # Сколько дней хранить файл (макс. 90)
+        name: af_weigand_sender              # Имя архива, который вы скачаете
+        path: af_weigand_sender_Windows.zip  # Путь к вашему .exe файлу (скорректируйте под свой проект)
+        retention-days: 7                    # Сколько дней хранить файл (макс. 90)
