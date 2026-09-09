@@ -12,6 +12,8 @@ jobs:
   build-windows:
     name: Сборка под Windows (MSVC)
     runs-on: windows-latest
+    permissions:
+      contents: write
 
     steps:
     # 1. Обновлено до v4 (поддерживает Node 24)
