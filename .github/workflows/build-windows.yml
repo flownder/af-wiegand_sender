@@ -53,3 +53,13 @@ jobs:
         name: af_weigand_sender              # Имя архива, который вы скачаете
         path: af_weigand_sender_Windows.zip  # Путь к вашему .exe файлу (скорректируйте под свой проект)
         retention-days: 7                    # Сколько дней хранить файл (макс. 90)
+    
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v2
+      with:
+        name: Release ${{ github.ref_name }}
+        body: "Автоматическая сборка af_weigand_sender для Windows (Qt 5.15.16)"
+        files: af_weigand_sender_Windows.zip
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
