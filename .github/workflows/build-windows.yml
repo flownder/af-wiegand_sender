@@ -4,6 +4,8 @@ name: Build Qt App for Windows
 on:
   push:
     branches: [ "main", "master" ]
+    tags:
+      - 'v*'  
   pull_request:
     branches: [ "main", "master" ]
 
