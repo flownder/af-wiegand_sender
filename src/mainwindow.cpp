@@ -55,40 +55,62 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupParameterWidgets()
 {
-    // Находим все QLineEdit на форме и подключаем их сигналы
-    QList<QLineEdit*> lineEdits = this->findChildren<QLineEdit*>();
+    // Находим QGroupBox, внутри которых находятся параметры
+    QGroupBox *cardGroup = findChild<QGroupBox*>("card_group");
+    QGroupBox *modeGroup = findChild<QGroupBox*>("mode_group");
+
+    QList<QGroupBox*> parameterGroups;
+    if (cardGroup) parameterGroups.append(cardGroup);
+    if (modeGroup) parameterGroups.append(modeGroup);
+
+    if (parameterGroups.isEmpty()) {
+        qDebug() << "Warning: No parameter groups (card_group, mode_group) found";
+        return;
+    }
+
+    // Собираем все виджеты из нужных групп
+    QList<QLineEdit*> lineEdits;
+    QList<QComboBox*> comboBoxes;
+    QList<QCheckBox*> checkBoxes;
+
+    for (QGroupBox *group : parameterGroups) {
+        lineEdits.append(group->findChildren<QLineEdit*>());
+        comboBoxes.append(group->findChildren<QComboBox*>());
+        checkBoxes.append(group->findChildren<QCheckBox*>());
+    }
+
+    // Подключаем QLineEdit
     for (QLineEdit* lineEdit : lineEdits) {
-        if (lineEdit->objectName() == QStringLiteral("ip_lineEdit")) {
-            continue;
-        }
-        // Подключаем сигнал нажатия Enter
-        connect(lineEdit, &QLineEdit::returnPressed, this, &MainWindow::onParameterChanged);
-        connect(lineEdit, &QLineEdit::editingFinished, this, &MainWindow::onParameterChanged);
+        connect(lineEdit, &QLineEdit::returnPressed,
+                this, &MainWindow::onParameterChanged);
+        connect(lineEdit, &QLineEdit::editingFinished,
+                this, &MainWindow::onParameterChanged);
     }
 
-    // Находим все QComboBox на форме и подключаем их сигналы
-    QList<QComboBox*> comboBoxes = this->findChildren<QComboBox*>();
+    // Подключаем QComboBox
     for (QComboBox* comboBox : comboBoxes) {
-        if (comboBox->objectName() == QStringLiteral("port_comboBox_1") || comboBox->objectName() == QStringLiteral("port_comboBox_2")) {
+        QString objectName = comboBox->objectName();
+
+        // Пропускаем комбобоксы, которые уже имеют свои отдельные обработчики
+        if (objectName == "sCASModeVariant" ||
+            objectName == "resultType" ||
+            objectName == "sWgFrameParity" ||
+            objectName == "sWgFrameLen") {
             continue;
         }
-        // Отключаем автоматическую публикацию для тех комбобоксов, которые уже имеют свои слоты
-        QString objectName = comboBox->objectName();
-        if (objectName == "sCASModeVariant" || objectName == "resultType" || objectName == "sWgFrameParity" || objectName == "sWgFrameLen") {
-            continue; // Пропускаем, так как они уже имеют свои обработчики
-        }
-        connect(comboBox, &QComboBox::currentTextChanged, this, &MainWindow::onComboBoxChanged);
+
+        connect(comboBox, &QComboBox::currentTextChanged,
+                this, &MainWindow::onComboBoxChanged);
     }
 
-    // Находим все QCheckBox на форме и подключаем их сигналы
-    QList<QCheckBox*> checkBoxes = this->findChildren<QCheckBox*>();
+    // Подключаем QCheckBox
     for (QCheckBox* checkBox : checkBoxes) {
         QString objectName = checkBox->objectName();
-        // Пропускаем, если это специальные чекбоксы с отдельными обработчиками
+
+        // Подключаем только реле с универсальным обработчиком
         if (objectName == "sRelay_1" || objectName == "sRelay_2") {
-            // Отключаем старые обработчики
-            // Подключаем универсальный обработчик
-            connect(checkBox, &QCheckBox::clicked, this, &MainWindow::onCheckBoxChanged);
+            connect(checkBox, &QCheckBox::clicked,
+                    this, &MainWindow::onCheckBoxChanged);
         }
     }
 }

@@ -276,7 +276,7 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
      <item row="0" column="1">
-      <widget class="QGroupBox" name="groupBox_4">
+      <widget class="QGroupBox" name="card_group">
        <property name="title">
         <string>Карты</string>
        </property>
@@ -345,7 +345,7 @@
       </widget>
      </item>
      <item row="0" column="0">
-      <widget class="QGroupBox" name="groupBox_2">
+      <widget class="QGroupBox" name="mode_group">
        <property name="title">
         <string>Режим</string>
        </property>
@@ -385,12 +385,12 @@
          <widget class="QComboBox" name="sCASModeVariant">
           <item>
            <property name="text">
-            <string>Последовательный</string>
+            <string>Параллельный</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Параллельный</string>
+            <string>Последовательный</string>
            </property>
           </item>
           <item>
