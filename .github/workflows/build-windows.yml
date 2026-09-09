@@ -22,13 +22,13 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '5.15.16'
+        version: '5.15.2'
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'
         aqtversion: '==3.1.19' # Фикс для ошибки парсинга qtbase в Qt 5.15.x
         cache: true
-        cache-key-prefix: 'qt-5.15.16-win64-msvc2019'
+        cache-key-prefix: 'qt-5.15.2-win64-msvc2019'
         modules: 'qtserialport'
 
     - name: Configure CMake
@@ -62,7 +62,7 @@ jobs:
       uses: softprops/action-gh-release@v2
       with:
         name: Release ${{ github.ref_name }}
-        body: "Автоматическая сборка af_weigand_sender для Windows (Qt 5.15.16)"
+        body: "Автоматическая сборка af_weigand_sender для Windows (Qt 5.15.2)"
         files: af_weigand_sender_Windows.zip
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
