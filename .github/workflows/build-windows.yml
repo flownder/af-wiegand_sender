@@ -29,7 +29,6 @@ jobs:
         aqtversion: '==3.1.19' # Фикс для ошибки парсинга qtbase в Qt 5.15.x
         cache: true
         cache-key-prefix: 'qt-5.15.2-win64-msvc2019'
-        modules: 'qtserialport'
 
     - name: Configure CMake
       run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
