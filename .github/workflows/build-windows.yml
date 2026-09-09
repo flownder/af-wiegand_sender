@@ -1,42 +1,42 @@
-name: Build Qt App for Windows
+name: Build Qt 5.15 App for Windows
 
-# Триггеры: когда запускать этот скрипт
 on:
   push:
     branches: [ "main", "master" ]
     tags:
-      - 'v*'  
+      - 'v*'          # Запуск при создании тегов вида v1.0.0
   pull_request:
     branches: [ "main", "master" ]
 
 jobs:
   build-windows:
-    name: Сборка под Windows
-    runs-on: windows-latest # GitHub предоставит свежую Windows Server
+    name: Сборка под Windows (MSVC)
+    runs-on: windows-latest
 
     steps:
-    # 1. Скачиваем ваш код из репозитория
+    # 1. Обновлено до v4 (поддерживает Node 24)
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # 2. Устанавливаем Qt
+    # 2. Обновлено до v4 (поддерживает Node 24)
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        aqtversion: '==3.1.19'
-        version: '5.15.2'               # Укажите нужную вам версию Qt
+        version: '5.15.16'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_msvc2019_64'      # Архитектура (win64_mingw_64, если хотите MinGW)
+        arch: 'win64_msvc2019_64'
+        aqtversion: '==3.1.19' # Фикс для ошибки парсинга qtbase в Qt 5.15.x
+        cache: true
+        cache-key-prefix: 'qt-5.15.16-win64-msvc2019'
+        modules: 'qtserialport'
 
-    # 3. Настраиваем CMake
     - name: Configure CMake
       run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
-    # 4. Собираем проект
     - name: Build
       run: cmake --build build --config Release
-      
+
     - name: Deploy Qt Dependencies
       run: |
         cd build/Release
@@ -48,14 +48,15 @@ jobs:
         Copy-Item -Path "build/Release/*" -Destination "ReleasePackage" -Recurse
         Compress-Archive -Path "ReleasePackage\*" -DestinationPath "af_weigand_sender_Windows.zip"
 
-    # 5. Упаковываем и сохраняем готовый .exe файл (Артефакт)
+    # 3. Обновлено до v4 (поддерживает Node 24)
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: af_weigand_sender              # Имя архива, который вы скачаете
-        path: af_weigand_sender_Windows.zip  # Путь к вашему .exe файлу (скорректируйте под свой проект)
-        retention-days: 7                    # Сколько дней хранить файл (макс. 90)
-    
+        name: af_weigand_sender_Windows_Release
+        path: af_weigand_sender_Windows.zip
+        retention-days: 30
+
+    # 4. Обновлено до v2 (поддерживает Node 24)
     - name: Create GitHub Release
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v2
