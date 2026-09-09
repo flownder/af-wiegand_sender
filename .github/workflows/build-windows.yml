@@ -21,7 +21,8 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '5.15.16'               # Укажите нужную вам версию Qt
+        aqtversion: '==3.3.*'
+        version: '5.15.2'               # Укажите нужную вам версию Qt
         host: 'windows'
         target: 'desktop'
         arch: 'win64_msvc2019_64'      # Архитектура (win64_mingw_64, если хотите MinGW)
