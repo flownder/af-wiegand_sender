@@ -53,6 +53,15 @@ jobs:
         mkdir ReleasePackage
         Copy-Item -Path "build/Release/*" -Destination "ReleasePackage" -Recurse
         
+        $qmqttDll = "build\_deps\qmqtt-build\Release\qmqtt.dll"
+        if (Test-Path $qmqttDll) {
+            Copy-Item -Path $qmqttDll -Destination "ReleasePackage\"
+            Write-Host "qmqtt.dll successfully copied!"
+        } else {
+            Write-Host "Warning: qmqtt.dll not found at expected path. Checking alternative..."
+            # Запасной вариант поиска
+            Get-ChildItem -Path "build" -Filter "qmqtt.dll" -Recurse | Copy-Item -Destination "ReleasePackage\"
+        }
         Rename-Item -Path "ReleasePackage\af_weigand_sender.exe" -NewName $NEW_EXE_NAME
         
         Compress-Archive -Path "ReleasePackage\*" -DestinationPath $ARCHIVE_NAME
