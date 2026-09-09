@@ -1,0 +1,659 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1125</width>
+    <height>614</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>571</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Подключение</string>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Broker IP address:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="ip_lineEdit">
+       <property name="text">
+        <string>127.0.0.1</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="Connect_pushButton">
+       <property name="text">
+        <string>Connect</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>330</y>
+      <width>571</width>
+      <height>93</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Реле</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_2">
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="relay_1_duration">
+       <property name="text">
+        <string>1000</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Реле #2, мс.:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_7">
+       <property name="text">
+        <string>Реле #1, мс.:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="pushRelay_2">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="relay_2_duration">
+       <property name="text">
+        <string>1000</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QCheckBox" name="sRelay_1">
+       <property name="text">
+        <string>Инверсия</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QPushButton" name="pushRelay_1">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QCheckBox" name="sRelay_2">
+       <property name="text">
+        <string>Инверсия</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="4">
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>430</y>
+      <width>571</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Результат</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_4">
+     <item row="0" column="2">
+      <widget class="QComboBox" name="units">
+       <item>
+        <property name="text">
+         <string>permille</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>mgdl</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>undefined</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="5">
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>Отправить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
+      <widget class="QComboBox" name="status">
+       <item>
+        <property name="text">
+         <string>less</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>more</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>undefined</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QComboBox" name="channel">
+       <item>
+        <property name="text">
+         <string>reader_1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>reader_2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>reader_255</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QDoubleSpinBox" name="volume">
+       <property name="decimals">
+        <number>2</number>
+       </property>
+       <property name="singleStep">
+        <double>0.100000000000000</double>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="4">
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_6">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>80</y>
+      <width>571</width>
+      <height>244</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Параметры</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="title">
+        <string>Карты</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Сервисная ошибка:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Выше порога:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Таймаут:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="sWgTimeout97"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="sWgMoreCardId"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgIncorrectCardId"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Без тестирования:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="sWgLessCardId"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="sWgSkipAlcoTest"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Ниже порога:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="sWgServiceError"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Некорректный:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QGroupBox" name="groupBox_2">
+       <property name="title">
+        <string>Режим</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="4" column="1">
+         <widget class="QComboBox" name="sWgFrameParity">
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Константа:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="sCASModeVariant">
+          <item>
+           <property name="text">
+            <string>Последовательный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-параллельный</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QComboBox" name="sWgFrameLen">
+          <item>
+           <property name="text">
+            <string>26</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>32</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>33</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>34</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>35</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>37</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>40</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>42</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>44</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>56</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>56</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Стандарт:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgZeroConstant">
+          <property name="text">
+           <string>100</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="sResultType">
+          <item>
+           <property name="text">
+            <string>quantity</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>quality</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Результат:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Бит четности:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Режим:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>500</y>
+      <width>571</width>
+      <height>64</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Событие</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_6">
+     <item row="0" column="0">
+      <widget class="QComboBox" name="channel_number">
+       <item>
+        <property name="text">
+         <string>reader_1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>reader_2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>reader_255</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="event">
+       <item>
+        <property name="text">
+         <string>ready</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>critical_error</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>incorrect_exhalation</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>card_timeout</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>SkipAlcoTest</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>CancelAnalyze</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>270</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="3">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Отправить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_8">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>10</y>
+      <width>542</width>
+      <height>551</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Приём</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_7">
+     <item row="0" column="0">
+      <widget class="QComboBox" name="port_comboBox_1"/>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="port_comboBox_2"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QTextEdit" name="textEdit_1"/>
+     </item>
+     <item row="1" column="1">
+      <widget class="QTextEdit" name="textEdit_2"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1125</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
