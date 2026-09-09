@@ -17,6 +17,8 @@ set(QMQTT_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 # но тогда придется отдельно устанавливать OpenSSL через vcpkg или choco.
 set(QMQTT_BUILD_WITH_SSL OFF CACHE BOOL "" FORCE) 
 
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build static libraries" FORCE)
+
 FetchContent_Declare(
     qmqtt
     GIT_REPOSITORY https://github.com/emqx/qmqtt.git
