@@ -104,6 +104,7 @@ void mqtt_client::onConnected()
 
     if (m_client) {
         m_client->subscribe("AlcoFrmDevice/WiegandBase/Out/Parameters/#", 0);
+        m_client->subscribe("AlcoFrmDevice/WiegandBase/Out/Statuses/sLog", 0);
     }
 }
 

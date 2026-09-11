@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1125</width>
-    <height>614</height>
+    <width>1146</width>
+    <height>830</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,7 +68,7 @@
      <rect>
       <x>10</x>
       <y>330</y>
-      <width>571</width>
+      <width>281</width>
       <height>93</height>
      </rect>
     </property>
@@ -76,49 +76,21 @@
      <string>Реле</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="relay_1_duration">
-       <property name="text">
-        <string>1000</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Реле #2, мс.:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_7">
-       <property name="text">
-        <string>Реле #1, мс.:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QPushButton" name="pushRelay_2">
-       <property name="text">
-        <string>Включить</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
       <widget class="QLineEdit" name="relay_2_duration">
        <property name="text">
         <string>1000</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
-      <widget class="QCheckBox" name="sRelay_1">
+     <item row="1" column="2">
+      <widget class="QCheckBox" name="sRelay_2">
        <property name="text">
         <string>Инверсия</string>
        </property>
       </widget>
      </item>
-     <item row="0" column="5">
+     <item row="0" column="3">
       <widget class="QPushButton" name="pushRelay_1">
        <property name="text">
         <string>Включить</string>
@@ -126,37 +98,25 @@
       </widget>
      </item>
      <item row="1" column="3">
-      <widget class="QCheckBox" name="sRelay_2">
+      <widget class="QPushButton" name="pushRelay_2">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLineEdit" name="relay_1_duration">
+       <property name="text">
+        <string>1000</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QCheckBox" name="sRelay_1">
        <property name="text">
         <string>Инверсия</string>
        </property>
       </widget>
-     </item>
-     <item row="0" column="4">
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="1" column="4">
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </widget>
@@ -641,13 +601,88 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>570</y>
+      <width>1121</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Log</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_8">
+     <item row="0" column="0">
+      <widget class="QTextBrowser" name="logViewer"/>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>329</y>
+      <width>281</width>
+      <height>93</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>GPIO</string>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_9">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label_15">
+       <property name="text">
+        <string>GPIO_1</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="gpio_1_duration">
+       <property name="text">
+        <string>1000</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="pushGPIO_1">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>GPIO_2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLineEdit" name="gpio_2_duration">
+       <property name="text">
+        <string>1000</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="pushGPIO_2">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1125</width>
+     <width>1146</width>
      <height>20</height>
     </rect>
    </property>

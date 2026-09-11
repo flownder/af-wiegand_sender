@@ -46,6 +46,10 @@ private slots:
     void onMqttConnectionStatus(bool connected);
     void onMqttConnectionError(const QString &message);
 
+    void on_pushGPIO_1_clicked();
+
+    void on_pushGPIO_2_clicked();
+
 private:
     Ui::MainWindow *ui;
     mqtt_client mq;
@@ -76,6 +80,22 @@ private:
     void setupSerial();
     void fillPortsCombo(QComboBox *combo);
     void stopSerialThread(QThread *thread, SerialWorker *worker);
+
+
+    static const QString TOPIC_PREFIX_PARAMS_OUT;   // Входящие параметры (Out с точки зрения устройства = In для нас)
+    static const QString TOPIC_PREFIX_STATUS_OUT;   // Статусы устройства
+    static const QString TOPIC_PREFIX_CMDS_IN;      // Команды, которые мы отправляем
+    static const QString TOPIC_PREFIX_PARAMS_IN;    // Параметры, которые мы отправляем
+
+    void handleParameterMessage(const QString &paramName, const QString &message);
+    void handleStatusMessage(const QString &statusName, const QString &message);
+    void handleCommandMessage(const QString &commandName, const QString &message);
+
+    QString extractSuffix(const QString &topic, const QString &prefix);
+
+
+
+
 };
 
 #endif // MAINWINDOW_H

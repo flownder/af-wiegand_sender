@@ -14,6 +14,11 @@
 #include <QThread>
 #include <QSerialPortInfo>
 
+const QString MainWindow::TOPIC_PREFIX_PARAMS_OUT = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Parameters/");
+const QString MainWindow::TOPIC_PREFIX_STATUS_OUT = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Statuses/");
+const QString MainWindow::TOPIC_PREFIX_CMDS_IN    = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Commands/");
+const QString MainWindow::TOPIC_PREFIX_PARAMS_IN  = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Parameters/");
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -169,9 +174,8 @@ void MainWindow::publishParameter(const QString &paramName, const QString &value
     qDebug() << "Published:" << topic << "=" << value;
 }
 
-QString MainWindow::extractParamName(const QString &topic)
+QString MainWindow::extractSuffix(const QString &topic, const QString &prefix)
 {
-    QString prefix = "AlcoFrmDevice/WiegandBase/Out/Parameters/";
     if (topic.startsWith(prefix)) {
         return topic.mid(prefix.length());
     }
@@ -219,19 +223,40 @@ void MainWindow::updateComboBoxByValue(QComboBox* comboBox, const QString &value
 
 void MainWindow::onMessageHandle(const QString &topic, const QString &message)
 {
-    // Извлекаем имя параметра из топика
-    QString paramName = extractParamName(topic);
-    if (paramName.isEmpty()) {
+    // 1. Параметры устройства -> обновляем виджеты
+    QString paramName = extractSuffix(topic, TOPIC_PREFIX_PARAMS_OUT);
+    if (!paramName.isEmpty()) {
+        handleParameterMessage(paramName, message);
         return;
     }
 
+    // 2. Статусы устройства -> обновляем индикаторы/логи
+    QString statusName = extractSuffix(topic, TOPIC_PREFIX_STATUS_OUT);
+    if (!statusName.isEmpty()) {
+        handleStatusMessage(statusName, message);
+        return;
+    }
+
+    // 3. Эхо команд (если брокер их возвращает)
+    QString cmdName = extractSuffix(topic, TOPIC_PREFIX_CMDS_IN);
+    if (!cmdName.isEmpty()) {
+        handleCommandMessage(cmdName, message);
+        return;
+    }
+
+    // 4. Неизвестный топик
+    qDebug() << "Unknown topic:" << topic;
+}
+
+void MainWindow::handleParameterMessage(const QString &paramName, const QString &message)
+{
     // Ищем QLineEdit с таким же objectName
     QLineEdit* lineEdit = findChild<QLineEdit*>(paramName);
     if (lineEdit) {
         lineEdit->blockSignals(true);
         lineEdit->setText(message);
         lineEdit->blockSignals(false);
-        qDebug() << "Updated QLineEdit" << paramName << "with value:" << message;
+        qDebug() << "Updated QLineEdit" << paramName << "=" << message;
         return;
     }
 
@@ -242,7 +267,7 @@ void MainWindow::onMessageHandle(const QString &topic, const QString &message)
         return;
     }
 
-    // Для QCheckBox реле нужно маппить имена
+    // QCheckBox реле
     QString checkBoxName;
     if (paramName == "sRelay_1/inverted") {
         checkBoxName = "sRelay_1";
@@ -252,17 +277,72 @@ void MainWindow::onMessageHandle(const QString &topic, const QString &message)
         checkBoxName = paramName;
     }
 
-    // Ищем QCheckBox
     QCheckBox* checkBox = findChild<QCheckBox*>(checkBoxName);
     if (checkBox) {
         checkBox->blockSignals(true);
         checkBox->setChecked(message == "true" || message == "1");
         checkBox->blockSignals(false);
-        qDebug() << "Updated QCheckBox" << checkBoxName << "with value:" << message;
+        qDebug() << "Updated QCheckBox" << checkBoxName << "=" << message;
         return;
     }
 
-    qDebug() << "No widget found with objectName:" << paramName;
+    qDebug() << "No widget for parameter:" << paramName;
+}
+
+
+void MainWindow::handleStatusMessage(const QString &statusName, const QString &message)
+{
+    if (statusName == "sLog")
+        ui->logViewer->append(message);
+/*
+    // Пример 1: общий статус устройства
+    if (statusName == "connection" || statusName == "deviceState") {
+        // Можно обновить QLabel на форме, например ui->labelDeviceStatus
+        // ui->labelDeviceStatus->setText(message);
+        statusBar()->showMessage(tr("Device: %1").arg(message), 3000);
+        return;
+    }
+
+    // Пример 2: статус считывателя карты
+    if (statusName == "cardReader") {
+        // Допустим, message = "ready" / "reading" / "error"
+        if (message == "error") {
+            statusBar()->showMessage(tr("Card reader ERROR"), 5000);
+        }
+        return;
+    }
+
+    // Пример 3: последний считанный UID карты
+    if (statusName == "lastCardUid") {
+        // Можно записать в QLineEdit, QLabel или textEdit
+        QLineEdit* uidEdit = findChild<QLineEdit*>("lastCardUid");
+        if (uidEdit) {
+            uidEdit->blockSignals(true);
+            uidEdit->setText(message);
+            uidEdit->blockSignals(false);
+        }
+        return;
+    }
+
+    // Пример 4: счётчик событий
+    if (statusName == "eventCounter") {
+        QLabel* counterLabel = findChild<QLabel*>("eventCounterLabel");
+        if (counterLabel) {
+            counterLabel->setText(message);
+        }
+        return;
+    }
+
+    qDebug() << "Unhandled status:" << statusName;
+*/
+}
+
+void MainWindow::handleCommandMessage(const QString &commandName, const QString &message)
+{
+    qDebug() << "Command echo:" << commandName << "=" << message;
+
+    // Например, логируем в текстовое поле
+    // ui->textEditLog->append(tr("CMD %1: %2").arg(commandName, message));
 }
 
 // Остальные методы без изменений
@@ -650,3 +730,15 @@ void MainWindow::stopSerialThread(QThread *thread, SerialWorker *worker)
     thread->quit();
     thread->wait();
 }
+
+void MainWindow::on_pushGPIO_1_clicked()
+{
+    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sGPIO", "gpio_id=1, duration=" + ui->gpio_1_duration->text());
+}
+
+
+void MainWindow::on_pushGPIO_2_clicked()
+{
+    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sGPIO", "gpio_id=2, duration=" + ui->gpio_2_duration->text());
+}
+
