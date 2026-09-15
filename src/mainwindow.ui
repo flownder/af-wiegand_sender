@@ -310,30 +310,6 @@
         <string>Режим</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="4" column="1">
-         <widget class="QComboBox" name="sWgFrameParity">
-          <item>
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>3</string>
-           </property>
-          </item>
-         </widget>
-        </item>
         <item row="2" column="0">
          <widget class="QLabel" name="label_4">
           <property name="text">
@@ -341,23 +317,25 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="sCASModeVariant">
-          <item>
-           <property name="text">
-            <string>Параллельный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Последовательный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Псевдо-параллельный</string>
-           </property>
-          </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Стандарт:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Бит четности:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Результат:</string>
+          </property>
          </widget>
         </item>
         <item row="3" column="1">
@@ -419,11 +397,59 @@
           </item>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
+        <item row="0" column="1">
+         <widget class="QComboBox" name="sCASModeVariant">
+          <item>
+           <property name="text">
+            <string>Параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Последовательный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-последовательный</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
           <property name="text">
-           <string>Стандарт:</string>
+           <string>Режим:</string>
           </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="sWgFrameParity">
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item row="2" column="1">
@@ -447,39 +473,15 @@
           </item>
          </widget>
         </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Результат:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Бит четности:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Режим:</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+         <widget class="QLineEdit" name="sWgDelayBetweenCards"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Задержка, мс:</string>
           </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
+         </widget>
         </item>
        </layout>
       </widget>

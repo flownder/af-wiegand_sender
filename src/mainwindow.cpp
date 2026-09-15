@@ -190,7 +190,7 @@ void MainWindow::updateComboBoxByValue(QComboBox* comboBox, const QString &value
     if (paramName == "sCASModeVariant") {
         bool ok;
         int intValue = value.toInt(&ok);
-        if (ok && intValue >= 1 && intValue <= 3) {
+        if (ok && intValue >= 1 && intValue <= 4) {
             comboBox->setCurrentIndex(intValue - 1);
             qDebug() << "Updated QComboBox" << paramName << "with value:" << value << "(index:" << (intValue - 1) << ")";
         } else {
@@ -385,6 +385,7 @@ void MainWindow::on_sCASModeVariant_activated(int index)
     case 0: value = "1"; break;
     case 1: value = "2"; break;
     case 2: value = "3"; break;
+    case 3: value = "4"; break;
     default: return;
     }
     mq.pubMess("AlcoFrmDevice/WiegandBase/In/Parameters/sCASModeVariant", value);
