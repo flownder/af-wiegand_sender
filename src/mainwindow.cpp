@@ -63,10 +63,12 @@ void MainWindow::setupParameterWidgets()
     // Находим QGroupBox, внутри которых находятся параметры
     QGroupBox *cardGroup = findChild<QGroupBox*>("card_group");
     QGroupBox *modeGroup = findChild<QGroupBox*>("mode_group");
+    QGroupBox *relayGroup = findChild<QGroupBox*>("sRelay");
 
     QList<QGroupBox*> parameterGroups;
     if (cardGroup) parameterGroups.append(cardGroup);
     if (modeGroup) parameterGroups.append(modeGroup);
+    if (relayGroup) parameterGroups.append(relayGroup);
 
     if (parameterGroups.isEmpty()) {
         qDebug() << "Warning: No parameter groups (card_group, mode_group) found";
@@ -88,8 +90,8 @@ void MainWindow::setupParameterWidgets()
     for (QLineEdit* lineEdit : lineEdits) {
         connect(lineEdit, &QLineEdit::returnPressed,
                 this, &MainWindow::onParameterChanged);
-        connect(lineEdit, &QLineEdit::editingFinished,
-                this, &MainWindow::onParameterChanged);
+        // connect(lineEdit, &QLineEdit::editingFinished,
+        //         this, &MainWindow::onParameterChanged);
     }
 
     // Подключаем QComboBox
@@ -108,12 +110,13 @@ void MainWindow::setupParameterWidgets()
                 this, &MainWindow::onComboBoxChanged);
     }
 
-    // Подключаем QCheckBox
+    checkBoxes = this->findChildren<QCheckBox*>();
+
     for (QCheckBox* checkBox : checkBoxes) {
         QString objectName = checkBox->objectName();
 
-        // Подключаем только реле с универсальным обработчиком
-        if (objectName == "sRelay_1" || objectName == "sRelay_2") {
+        if (objectName == QStringLiteral("sRelay_1") ||
+            objectName == QStringLiteral("sRelay_2")) {
             connect(checkBox, &QCheckBox::clicked,
                     this, &MainWindow::onCheckBoxChanged);
         }
@@ -165,12 +168,17 @@ void MainWindow::onCheckBoxChanged(bool checked)
     publishParameter(fullParamName, value);
 }
 
-void MainWindow::publishParameter(const QString &paramName, const QString &value)
+void MainWindow::publishParameter(const QString &widgetName, const QString &value)
 {
-    if (paramName.isEmpty() || value.isEmpty()) return;
+    if (widgetName.isEmpty() || value.isEmpty()) {
+        return;
+    }
 
-    QString topic = "AlcoFrmDevice/WiegandBase/In/Parameters/" + paramName;
+    const QString paramName = widgetNameToParamName(widgetName);
+    const QString topic = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Parameters/") + paramName;
+
     mq.pubMess(topic, value);
+
     qDebug() << "Published:" << topic << "=" << value;
 }
 
@@ -223,29 +231,56 @@ void MainWindow::updateComboBoxByValue(QComboBox* comboBox, const QString &value
 
 void MainWindow::onMessageHandle(const QString &topic, const QString &message)
 {
-    // 1. Параметры устройства -> обновляем виджеты
-    QString paramName = extractSuffix(topic, TOPIC_PREFIX_PARAMS_OUT);
-    if (!paramName.isEmpty()) {
-        handleParameterMessage(paramName, message);
-        return;
-    }
-
-    // 2. Статусы устройства -> обновляем индикаторы/логи
     QString statusName = extractSuffix(topic, TOPIC_PREFIX_STATUS_OUT);
+
     if (!statusName.isEmpty()) {
         handleStatusMessage(statusName, message);
         return;
     }
 
-    // 3. Эхо команд (если брокер их возвращает)
-    QString cmdName = extractSuffix(topic, TOPIC_PREFIX_CMDS_IN);
-    if (!cmdName.isEmpty()) {
-        handleCommandMessage(cmdName, message);
+    QString paramName = extractParamName(topic);
+    if (paramName.isEmpty()) {
         return;
     }
 
-    // 4. Неизвестный топик
-    qDebug() << "Unknown topic:" << topic;
+    // Преобразуем имя параметра в имя виджета:
+    // sRelay_2/channel -> sRelay_2_channel
+    QString widgetName = paramNameToWidgetName(paramName);
+
+    // 1. Ищем QLineEdit
+    QLineEdit* lineEdit = findChild<QLineEdit*>(widgetName);
+    if (lineEdit) {
+        lineEdit->blockSignals(true);
+        lineEdit->setText(message);
+        lineEdit->blockSignals(false);
+
+        qDebug() << "Updated QLineEdit" << widgetName << "with value:" << message;
+        return;
+    }
+
+    // 2. Ищем QComboBox
+    QComboBox* comboBox = findChild<QComboBox*>(widgetName);
+    if (comboBox) {
+        updateComboBoxByValue(comboBox, message, widgetName);
+        return;
+    }
+
+    // 4. Ищем QCheckBox
+    QCheckBox* checkBox = findChild<QCheckBox*>(widgetName);
+    if (checkBox) {
+        checkBox->blockSignals(true);
+        checkBox->setChecked(message == QStringLiteral("true") ||
+                             message == QStringLiteral("1"));
+        checkBox->blockSignals(false);
+
+        qDebug() << "Updated QCheckBox" << widgetName << "with value:" << message;
+        return;
+    }
+
+    qDebug() << "No widget found for parameter:"
+             << paramName
+             << "widget name:"
+             << widgetName;
 }
 
 void MainWindow::handleParameterMessage(const QString &paramName, const QString &message)
@@ -370,12 +405,12 @@ void MainWindow::on_sWgFrameLen_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_pushRelay_1_clicked()
 {
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=1, duration=" + ui->relay_1_duration->text());
+    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=1, duration=" + ui->sRelay_1_duration->text());
 }
 
 void MainWindow::on_pushRelay_2_clicked()
 {
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=2, duration=" + ui->relay_2_duration->text());
+    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=2, duration=" + ui->sRelay_2_duration->text());
 }
 
 void MainWindow::on_sCASModeVariant_activated(int index)
@@ -743,3 +778,56 @@ void MainWindow::on_pushGPIO_2_clicked()
     mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sGPIO", "gpio_id=2, duration=" + ui->gpio_2_duration->text());
 }
 
+QString MainWindow::paramNameToWidgetName(const QString &paramName) const
+{
+    // Существующая логика для inverted-флагов реле
+    if (paramName == QStringLiteral("sRelay_1/inverted")) {
+        return QStringLiteral("sRelay_1");
+    }
+
+    if (paramName == QStringLiteral("sRelay_2/inverted")) {
+        return QStringLiteral("sRelay_2");
+    }
+
+    // Универсальная замена:
+    // sRelay_1/channel -> sRelay_1_channel
+    // sRelay_2/event   -> sRelay_2_event
+    QString widgetName = paramName;
+    widgetName.replace(QLatin1Char('/'), QLatin1Char('_'));
+
+    return widgetName;
+}
+
+QString MainWindow::widgetNameToParamName(const QString &widgetName) const
+{
+    // Для чекбоксов реле оставляем старую логику
+    if (widgetName == QStringLiteral("sRelay_1")) {
+        return QStringLiteral("sRelay_1/inverted");
+    }
+
+    if (widgetName == QStringLiteral("sRelay_2")) {
+        return QStringLiteral("sRelay_2/inverted");
+    }
+
+    const QString relay1Prefix = QStringLiteral("sRelay_1_");
+    const QString relay2Prefix = QStringLiteral("sRelay_2_");
+
+    // sRelay_1_channel -> sRelay_1/channel
+    if (widgetName.startsWith(relay1Prefix)) {
+        return QStringLiteral("sRelay_1/") +
+               widgetName.mid(relay1Prefix.length());
+    }
+
+    // sRelay_2_event -> sRelay_2/event
+    if (widgetName.startsWith(relay2Prefix)) {
+        return QStringLiteral("sRelay_2/") +
+               widgetName.mid(relay2Prefix.length());
+    }
+
+    return widgetName;
+}
+
+QString MainWindow::extractParamName(const QString &topic)
+{
+    return extractSuffix(topic, TOPIC_PREFIX_PARAMS_OUT);
+}

@@ -93,7 +93,8 @@ private:
 
     QString extractSuffix(const QString &topic, const QString &prefix);
 
-
+    QString paramNameToWidgetName(const QString &paramName) const;
+    QString widgetNameToParamName(const QString &widgetName) const;
 
 
 };
