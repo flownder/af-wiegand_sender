@@ -86,6 +86,7 @@ private:
     static const QString TOPIC_PREFIX_STATUS_OUT;   // Статусы устройства
     static const QString TOPIC_PREFIX_CMDS_IN;      // Команды, которые мы отправляем
     static const QString TOPIC_PREFIX_PARAMS_IN;    // Параметры, которые мы отправляем
+    static const QString TOPIC_PREFIX_MESSAGE_OUT;
 
     void handleParameterMessage(const QString &paramName, const QString &message);
     void handleStatusMessage(const QString &statusName, const QString &message);

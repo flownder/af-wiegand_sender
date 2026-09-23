@@ -14,10 +14,11 @@
 #include <QThread>
 #include <QSerialPortInfo>
 
-const QString MainWindow::TOPIC_PREFIX_PARAMS_OUT = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Parameters/");
-const QString MainWindow::TOPIC_PREFIX_STATUS_OUT = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Statuses/");
-const QString MainWindow::TOPIC_PREFIX_CMDS_IN    = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Commands/");
-const QString MainWindow::TOPIC_PREFIX_PARAMS_IN  = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Parameters/");
+const QString MainWindow::TOPIC_PREFIX_PARAMS_OUT  = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Parameters/");
+const QString MainWindow::TOPIC_PREFIX_STATUS_OUT  = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Statuses/");
+const QString MainWindow::TOPIC_PREFIX_CMDS_IN     = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Commands/");
+const QString MainWindow::TOPIC_PREFIX_PARAMS_IN   = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Parameters/");
+const QString MainWindow::TOPIC_PREFIX_MESSAGE_OUT = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Messages/");
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -329,6 +330,8 @@ void MainWindow::handleStatusMessage(const QString &statusName, const QString &m
 {
     if (statusName == "sLog")
         ui->logViewer->append(message);
+
+
 /*
     // Пример 1: общий статус устройства
     if (statusName == "connection" || statusName == "deviceState") {

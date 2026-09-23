@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1171</width>
-    <height>860</height>
+    <height>895</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,7 +67,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>330</y>
+      <y>358</y>
       <width>571</width>
       <height>121</height>
      </rect>
@@ -254,7 +254,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>550</y>
+      <y>578</y>
       <width>571</width>
       <height>64</height>
      </rect>
@@ -358,30 +358,135 @@
       <x>10</x>
       <y>80</y>
       <width>571</width>
-      <height>248</height>
+      <height>276</height>
      </rect>
     </property>
     <property name="title">
      <string>Параметры</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
-     <item row="0" column="0">
-      <widget class="QGroupBox" name="mode_group">
-       <property name="title">
-        <string>Режим</string>
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="card_group">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_4">
+       <property name="maximumSize">
+        <size>
+         <width>260</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Сервисные карты</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_13">
           <property name="text">
-           <string>Константа:</string>
+           <string>Без тестирования:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Некорректный:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="sWgMoreCardId"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Ниже порога:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="sWgTimeout97"/>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="sWgSkipAlcoTest"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="sWgServiceError"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="sWgLessCardId"/>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Сервисная ошибка:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgIncorrectCardId"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Выше порога:</string>
           </property>
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
+         <widget class="QLabel" name="label_12">
           <property name="text">
-           <string>Стандарт:</string>
+           <string>Таймаут:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QGroupBox" name="mode_group">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>320</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Режим</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Результат:</string>
           </property>
          </widget>
         </item>
@@ -389,13 +494,6 @@
          <widget class="QLabel" name="label_6">
           <property name="text">
            <string>Бит четности:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Результат:</string>
           </property>
          </widget>
         </item>
@@ -458,6 +556,44 @@
           </item>
          </widget>
         </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Константа:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Блокировка карт, мс:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Стандарт:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QComboBox" name="sResultType">
+          <item>
+           <property name="text">
+            <string>quantity</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>quality</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <widget class="QLineEdit" name="sTTLWait"/>
+        </item>
         <item row="0" column="1">
          <widget class="QComboBox" name="sCASModeVariant">
           <item>
@@ -480,6 +616,23 @@
             <string>Псевдо-последовательный</string>
            </property>
           </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Задержка, мс:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="sWgDelayBetweenCards"/>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgZeroConstant">
+          <property name="text">
+           <string>100</string>
+          </property>
          </widget>
         </item>
         <item row="0" column="0">
@@ -513,106 +666,6 @@
           </item>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="sWgZeroConstant">
-          <property name="text">
-           <string>100</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="sResultType">
-          <item>
-           <property name="text">
-            <string>quantity</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>quality</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="sWgDelayBetweenCards"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Задержка, мс:</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QGroupBox" name="card_group">
-       <property name="title">
-        <string>Карты</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Сервисная ошибка:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Выше порога:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_12">
-          <property name="text">
-           <string>Таймаут:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="sWgTimeout97"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="sWgMoreCardId"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="sWgIncorrectCardId"/>
-        </item>
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_13">
-          <property name="text">
-           <string>Без тестирования:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="sWgLessCardId"/>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="sWgSkipAlcoTest"/>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Ниже порога:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="sWgServiceError"/>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Некорректный:</string>
-          </property>
-         </widget>
-        </item>
        </layout>
       </widget>
      </item>
@@ -622,7 +675,7 @@
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>550</y>
+      <y>578</y>
       <width>571</width>
       <height>64</height>
      </rect>
@@ -712,7 +765,7 @@
       <x>590</x>
       <y>10</y>
       <width>571</width>
-      <height>531</height>
+      <height>561</height>
      </rect>
     </property>
     <property name="title">
@@ -737,7 +790,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>622</y>
+      <y>650</y>
       <width>1151</width>
       <height>191</height>
      </rect>
@@ -755,7 +808,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>450</y>
+      <y>478</y>
       <width>571</width>
       <height>93</height>
      </rect>
