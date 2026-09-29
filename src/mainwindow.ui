@@ -173,7 +173,7 @@
        </item>
        <item>
         <property name="text">
-         <string>undefined</string>
+         <string>both</string>
         </property>
        </item>
       </widget>
@@ -199,7 +199,7 @@
        </item>
        <item>
         <property name="text">
-         <string>undefined</string>
+         <string>both</string>
         </property>
        </item>
       </widget>
