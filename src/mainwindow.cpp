@@ -62,14 +62,16 @@ MainWindow::~MainWindow()
 void MainWindow::setupParameterWidgets()
 {
     // Находим QGroupBox, внутри которых находятся параметры
-    QGroupBox *cardGroup = findChild<QGroupBox*>("card_group");
-    QGroupBox *modeGroup = findChild<QGroupBox*>("mode_group");
+    QGroupBox *cardGroup  = findChild<QGroupBox*>("card_group");
+    QGroupBox *modeGroup  = findChild<QGroupBox*>("mode_group");
     QGroupBox *relayGroup = findChild<QGroupBox*>("sRelay");
+    QGroupBox *gpioGroup  = findChild<QGroupBox*>("sGpio");
 
     QList<QGroupBox*> parameterGroups;
     if (cardGroup) parameterGroups.append(cardGroup);
     if (modeGroup) parameterGroups.append(modeGroup);
     if (relayGroup) parameterGroups.append(relayGroup);
+    if (gpioGroup) parameterGroups.append(gpioGroup);
 
     if (parameterGroups.isEmpty()) {
         qDebug() << "Warning: No parameter groups (card_group, mode_group) found";
@@ -815,16 +817,25 @@ QString MainWindow::widgetNameToParamName(const QString &widgetName) const
     const QString relay1Prefix = QStringLiteral("sRelay_1_");
     const QString relay2Prefix = QStringLiteral("sRelay_2_");
 
+    const QString gpio1Prefix = QStringLiteral("sGpio_1_");
+    const QString gpio2Prefix = QStringLiteral("sGpio_2_");
+
     // sRelay_1_channel -> sRelay_1/channel
     if (widgetName.startsWith(relay1Prefix)) {
-        return QStringLiteral("sRelay_1/") +
-               widgetName.mid(relay1Prefix.length());
+        return QStringLiteral("sRelay_1/") + widgetName.mid(relay1Prefix.length());
     }
 
     // sRelay_2_event -> sRelay_2/event
     if (widgetName.startsWith(relay2Prefix)) {
-        return QStringLiteral("sRelay_2/") +
-               widgetName.mid(relay2Prefix.length());
+        return QStringLiteral("sRelay_2/") + widgetName.mid(relay2Prefix.length());
+    }
+
+    if (widgetName.startsWith(gpio1Prefix)) {
+        return QStringLiteral("sGpio_1/") + widgetName.mid(gpio1Prefix.length());
+    }
+
+    if (widgetName.startsWith(gpio2Prefix)) {
+        return QStringLiteral("sGpio_2/") + widgetName.mid(gpio2Prefix.length());
     }
 
     return widgetName;
