@@ -118,10 +118,8 @@ void MainWindow::setupParameterWidgets()
     for (QCheckBox* checkBox : checkBoxes) {
         QString objectName = checkBox->objectName();
 
-        if (objectName == QStringLiteral("sRelay_1") ||
-            objectName == QStringLiteral("sRelay_2")) {
-            connect(checkBox, &QCheckBox::clicked,
-                    this, &MainWindow::onCheckBoxChanged);
+        if (objectName == QStringLiteral("sRelay_1") || objectName == QStringLiteral("sRelay_2") || objectName == "sIgnoreSecondCard" || objectName == "sBlockWiegandChannel") {
+            connect(checkBox, &QCheckBox::clicked, this, &MainWindow::onCheckBoxChanged);
         }
     }
 }

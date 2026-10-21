@@ -483,6 +483,13 @@
         <string>Режим</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgZeroConstant">
+          <property name="text">
+           <string>100</string>
+          </property>
+         </widget>
+        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -490,10 +497,93 @@
           </property>
          </widget>
         </item>
+        <item row="4" column="1">
+         <widget class="QComboBox" name="sWgFrameParity">
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>0</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Режим:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Стандарт:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="sCASModeVariant">
+          <item>
+           <property name="text">
+            <string>Параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Последовательный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-последовательный</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Задержка, мс:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Константа:</string>
+          </property>
+         </widget>
+        </item>
         <item row="4" column="0">
          <widget class="QLabel" name="label_6">
           <property name="text">
            <string>Бит четности:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_21">
+          <property name="text">
+           <string>Блокировка карт, мс:</string>
           </property>
          </widget>
         </item>
@@ -556,27 +646,6 @@
           </item>
          </widget>
         </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Константа:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>Блокировка карт, мс:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Стандарт:</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="1">
          <widget class="QComboBox" name="sResultType">
           <item>
@@ -594,76 +663,21 @@
         <item row="6" column="1">
          <widget class="QLineEdit" name="sTTLWait"/>
         </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="sCASModeVariant">
-          <item>
-           <property name="text">
-            <string>Параллельный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Последовательный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Псевдо-параллельный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Псевдо-последовательный</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Задержка, мс:</string>
-          </property>
-         </widget>
-        </item>
         <item row="5" column="1">
          <widget class="QLineEdit" name="sWgDelayBetweenCards"/>
         </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="sWgZeroConstant">
+        <item row="7" column="0">
+         <widget class="QCheckBox" name="sIgnoreSecondCard">
           <property name="text">
-           <string>100</string>
+           <string>sIgnoreSecondCard</string>
           </property>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_2">
+        <item row="7" column="1">
+         <widget class="QCheckBox" name="sBlockWiegandChannel">
           <property name="text">
-           <string>Режим:</string>
+           <string>sBlockWiegandChannel</string>
           </property>
-         </widget>
-        </item>
-        <item row="4" column="1">
-         <widget class="QComboBox" name="sWgFrameParity">
-          <item>
-           <property name="text">
-            <string>2</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>3</string>
-           </property>
-          </item>
          </widget>
         </item>
        </layout>
