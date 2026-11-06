@@ -239,6 +239,14 @@ void MainWindow::onMessageHandle(const QString &topic, const QString &message)
         return;
     }
 
+    QString mess = extractSuffix(topic, TOPIC_PREFIX_MESSAGE_OUT);
+
+    if (!mess.isEmpty()) {
+        handleCommandMessage(mess, message);
+        return;
+    }
+
+
     QString paramName = extractParamName(topic);
     if (paramName.isEmpty()) {
         return;
@@ -278,10 +286,7 @@ void MainWindow::onMessageHandle(const QString &topic, const QString &message)
         return;
     }
 
-    qDebug() << "No widget found for parameter:"
-             << paramName
-             << "widget name:"
-             << widgetName;
+    qDebug() << "No widget found for parameter:" << paramName << "widget name:" << widgetName;
 }
 
 void MainWindow::handleParameterMessage(const QString &paramName, const QString &message)
@@ -377,10 +382,7 @@ void MainWindow::handleStatusMessage(const QString &statusName, const QString &m
 
 void MainWindow::handleCommandMessage(const QString &commandName, const QString &message)
 {
-    qDebug() << "Command echo:" << commandName << "=" << message;
-
-    // Например, логируем в текстовое поле
-    // ui->textEditLog->append(tr("CMD %1: %2").arg(commandName, message));
+    ui->plainTextEdit->appendPlainText(message);
 }
 
 // Остальные методы без изменений
