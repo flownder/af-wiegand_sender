@@ -14,6 +14,11 @@
 #include <QThread>
 #include <QSerialPortInfo>
 
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QJsonValue>
+
 const QString MainWindow::TOPIC_PREFIX_PARAMS_OUT  = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Parameters/");
 const QString MainWindow::TOPIC_PREFIX_STATUS_OUT  = QStringLiteral("AlcoFrmDevice/WiegandBase/Out/Statuses/");
 const QString MainWindow::TOPIC_PREFIX_CMDS_IN     = QStringLiteral("AlcoFrmDevice/WiegandBase/In/Commands/");
@@ -103,7 +108,7 @@ void MainWindow::setupParameterWidgets()
 
         // Пропускаем комбобоксы, которые уже имеют свои отдельные обработчики
         if (objectName == "sCASModeVariant" ||
-            objectName == "resultType" ||
+            objectName == "sResultType" ||
             objectName == "sWgFrameParity" ||
             objectName == "sWgFrameLen") {
             continue;
@@ -118,7 +123,7 @@ void MainWindow::setupParameterWidgets()
     for (QCheckBox* checkBox : checkBoxes) {
         QString objectName = checkBox->objectName();
 
-        if (objectName == QStringLiteral("sRelay_1") || objectName == QStringLiteral("sRelay_2") || objectName == "sIgnoreSecondCard" || objectName == "sBlockWiegandChannel") {
+        if (objectName == QStringLiteral("sRelay_1") || objectName == QStringLiteral("sRelay_2") || objectName == "sIgnoreSecondCard" || objectName == "sIgnoreCardReader") {
             connect(checkBox, &QCheckBox::clicked, this, &MainWindow::onCheckBoxChanged);
         }
     }
@@ -388,14 +393,19 @@ void MainWindow::handleCommandMessage(const QString &commandName, const QString 
 // Остальные методы без изменений
 void MainWindow::on_pushButton_clicked()
 {
-    const QString &channel  = ui->channel->currentText();
-    const QString &volume   = QLocale::c().toString(ui->volume->value(), 'f', ui->volume->decimals());
-    const QString &units    = ui->units->currentText();
-    const QString &status   = ui->status->currentText();
+    if (m_isConnected) {
+        QJsonObject jsonObj;
+        jsonObj["channel_number"] = ui->channel->currentText().toInt();
+        // jsonObj["result"]         = QLocale::c().toString(ui->volume->value(), 'f', ui->volume->decimals());
+        jsonObj["result"]         = ui->volume->value();
+        jsonObj["units"]          = ui->units->currentText();
+        jsonObj["status"]         = ui->status->currentText();
 
-    const QString result = "channel_number=" + channel + ", result=" + volume + ", units=" + units + ", status=" + status;
+        QJsonDocument doc(jsonObj);
+        const QString result = doc.toJson(QJsonDocument::Compact);
 
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sTranslateWiegandPromilles", result);
+        mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sTranslateWiegandPromilles", result);
+    }
 }
 
 void MainWindow::on_sWgFrameParity_currentTextChanged(const QString &arg1)
@@ -410,12 +420,28 @@ void MainWindow::on_sWgFrameLen_currentTextChanged(const QString &arg1)
 
 void MainWindow::on_pushRelay_1_clicked()
 {
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=1, duration=" + ui->sRelay_1_duration->text());
+    if (m_isConnected) {
+        QJsonObject jsonObj;
+        jsonObj["relay_id"] = 1;
+        jsonObj["duration"] = ui->sRelay_1_duration->text().toInt();
+
+        QJsonDocument doc(jsonObj);
+        const QString result = doc.toJson(QJsonDocument::Compact);
+        mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", result);
+    }
 }
 
 void MainWindow::on_pushRelay_2_clicked()
 {
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", "relay_id=2, duration=" + ui->sRelay_2_duration->text());
+    if (m_isConnected) {
+        QJsonObject jsonObj;
+        jsonObj["relay_id"] = 2;
+        jsonObj["duration"] = ui->sRelay_2_duration->text().toInt();
+
+        QJsonDocument doc(jsonObj);
+        const QString result = doc.toJson(QJsonDocument::Compact);
+        mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sRelay", result);
+    }
 }
 
 void MainWindow::on_sCASModeVariant_activated(int index)
@@ -445,12 +471,15 @@ void MainWindow::on_sResultType_activated(int index)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    const QString &channel = ui->channel_number->currentText();
-    const QString &event   = ui->event->currentText();
+    if (m_isConnected) {
+        QJsonObject jsonObj;
+        jsonObj["channel_number"] = ui->channel_number->currentText().toInt();
+        jsonObj["event"]          = ui->event->currentText();
 
-    const QString result = "channel_number=" + channel + ", event=" + event;
-
-    mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sWiegandEvent", result);
+        QJsonDocument doc(jsonObj);
+        const QString result = doc.toJson(QJsonDocument::Compact);
+        mq.pubMess("AlcoFrmDevice/WiegandBase/In/Commands/sWiegandEvent", result);
+    }
 }
 
 

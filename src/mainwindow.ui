@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1609</width>
-    <height>895</height>
+    <height>972</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,121 +67,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>358</y>
+      <y>400</y>
       <width>571</width>
-      <height>121</height>
+      <height>141</height>
      </rect>
     </property>
     <property name="title">
      <string>Реле</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_2">
-     <item row="2" column="1">
-      <widget class="QComboBox" name="sRelay_2_channel">
-       <item>
-        <property name="text">
-         <string>off</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_255</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="3">
-      <widget class="QLineEdit" name="sRelay_1_duration">
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="4">
-      <widget class="QCheckBox" name="sRelay_2">
-       <property name="text">
-        <string>Инверсия</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="5">
-      <widget class="QPushButton" name="pushRelay_2">
-       <property name="text">
-        <string>Включить</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="4">
-      <widget class="QCheckBox" name="sRelay_1">
-       <property name="text">
-        <string>Инверсия</string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="3">
       <widget class="QLineEdit" name="sRelay_2_duration">
        <property name="text">
         <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QComboBox" name="sRelay_1_channel">
-       <item>
-        <property name="text">
-         <string>off</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_1</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_2</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>reader_255</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QComboBox" name="sRelay_1_event">
-       <item>
-        <property name="text">
-         <string>less</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>more</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>both</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_8">
-       <property name="text">
-        <string>Реле #1:</string>
        </property>
       </widget>
      </item>
@@ -204,18 +102,35 @@
        </item>
       </widget>
      </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="label_17">
-       <property name="text">
-        <string>Реле #2:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="5">
-      <widget class="QPushButton" name="pushRelay_1">
+     <item row="2" column="5">
+      <widget class="QPushButton" name="pushRelay_2">
        <property name="text">
         <string>Включить</string>
        </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="sRelay_1_channel">
+       <item>
+        <property name="text">
+         <string>off</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>255</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item row="0" column="1">
@@ -225,6 +140,20 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="sRelay_1_duration">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_8">
+       <property name="text">
+        <string>Реле #1:</string>
        </property>
       </widget>
      </item>
@@ -238,6 +167,37 @@
        </property>
       </widget>
      </item>
+     <item row="2" column="1">
+      <widget class="QComboBox" name="sRelay_2_channel">
+       <item>
+        <property name="text">
+         <string>off</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>255</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="label_17">
+       <property name="text">
+        <string>Реле #2:</string>
+       </property>
+      </widget>
+     </item>
      <item row="0" column="3">
       <widget class="QLabel" name="label_20">
        <property name="text">
@@ -248,13 +208,63 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="5">
+      <widget class="QPushButton" name="pushRelay_1">
+       <property name="text">
+        <string>Включить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QComboBox" name="sRelay_1_event">
+       <item>
+        <property name="text">
+         <string>less</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>more</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>both</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="4">
+      <widget class="QCheckBox" name="sRelay_1">
+       <property name="text">
+        <string>Инверсия</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="4">
+      <widget class="QCheckBox" name="sRelay_2">
+       <property name="text">
+        <string>Инверсия</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" colspan="4">
+      <widget class="QLineEdit" name="sRelayRules"/>
+     </item>
+     <item row="3" column="0" colspan="2">
+      <widget class="QLabel" name="RelayRules">
+       <property name="text">
+        <string>Relay Rules:</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </widget>
    <widget class="QGroupBox" name="groupBox_5">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>578</y>
+      <y>670</y>
       <width>571</width>
       <height>64</height>
      </rect>
@@ -296,17 +306,17 @@
       <widget class="QComboBox" name="channel">
        <item>
         <property name="text">
-         <string>reader_1</string>
+         <string>1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>reader_2</string>
+         <string>2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>reader_255</string>
+         <string>255</string>
         </property>
        </item>
       </widget>
@@ -358,107 +368,13 @@
       <x>10</x>
       <y>80</y>
       <width>571</width>
-      <height>276</height>
+      <height>311</height>
      </rect>
     </property>
     <property name="title">
      <string>Параметры</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_5">
-     <item row="0" column="1">
-      <widget class="QGroupBox" name="card_group">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>260</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="title">
-        <string>Сервисные карты</string>
-       </property>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="4" column="0">
-         <widget class="QLabel" name="label_13">
-          <property name="text">
-           <string>Без тестирования:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_11">
-          <property name="text">
-           <string>Некорректный:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="sWgMoreCardId"/>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_9">
-          <property name="text">
-           <string>Ниже порога:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1">
-         <widget class="QLineEdit" name="sWgTimeout97"/>
-        </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="sWgSkipAlcoTest"/>
-        </item>
-        <item row="5" column="1">
-         <widget class="QLineEdit" name="sWgServiceError"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="sWgLessCardId"/>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_14">
-          <property name="text">
-           <string>Сервисная ошибка:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="sWgIncorrectCardId"/>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_10">
-          <property name="text">
-           <string>Выше порога:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_12">
-          <property name="text">
-           <string>Таймаут:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="QGroupBox" name="mode_group">
        <property name="sizePolicy">
@@ -483,13 +399,6 @@
         <string>Режим</string>
        </property>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="sWgZeroConstant">
-          <property name="text">
-           <string>100</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLabel" name="label_3">
           <property name="text">
@@ -497,79 +406,31 @@
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QComboBox" name="sWgFrameParity">
+        <item row="1" column="1">
+         <widget class="QComboBox" name="sResultType">
           <item>
            <property name="text">
-            <string>2</string>
+            <string>quantity</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>0</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>1</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>3</string>
+            <string>quality</string>
            </property>
           </item>
          </widget>
         </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_2">
+        <item row="6" column="0">
+         <widget class="QLabel" name="label_21">
           <property name="text">
-           <string>Режим:</string>
+           <string>Блокировка карт, мс:</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="0">
-         <widget class="QLabel" name="label_5">
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgZeroConstant">
           <property name="text">
-           <string>Стандарт:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QComboBox" name="sCASModeVariant">
-          <item>
-           <property name="text">
-            <string>Параллельный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Последовательный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Псевдо-параллельный</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>Псевдо-последовательный</string>
-           </property>
-          </item>
-         </widget>
-        </item>
-        <item row="5" column="0">
-         <widget class="QLabel" name="label_7">
-          <property name="text">
-           <string>Задержка, мс:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Константа:</string>
+           <string>100</string>
           </property>
          </widget>
         </item>
@@ -577,13 +438,6 @@
          <widget class="QLabel" name="label_6">
           <property name="text">
            <string>Бит четности:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="6" column="0">
-         <widget class="QLabel" name="label_21">
-          <property name="text">
-           <string>Блокировка карт, мс:</string>
           </property>
          </widget>
         </item>
@@ -646,39 +500,205 @@
           </item>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QComboBox" name="sResultType">
+        <item row="4" column="1">
+         <widget class="QComboBox" name="sWgFrameParity">
           <item>
            <property name="text">
-            <string>quantity</string>
+            <string>2</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>quality</string>
+            <string>0</string>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="7" column="1">
+         <widget class="QLineEdit" name="sBlockWiegandChannel"/>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Стандарт:</string>
+          </property>
          </widget>
         </item>
         <item row="6" column="1">
          <widget class="QLineEdit" name="sTTLWait"/>
         </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="sCASModeVariant">
+          <item>
+           <property name="text">
+            <string>Параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Последовательный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-параллельный</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Псевдо-последовательный</string>
+           </property>
+          </item>
+         </widget>
+        </item>
         <item row="5" column="1">
          <widget class="QLineEdit" name="sWgDelayBetweenCards"/>
         </item>
-        <item row="7" column="0">
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Константа:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Задержка, мс:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="text">
+           <string>Режим:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
          <widget class="QCheckBox" name="sIgnoreSecondCard">
           <property name="text">
            <string>sIgnoreSecondCard</string>
           </property>
          </widget>
         </item>
-        <item row="7" column="1">
-         <widget class="QCheckBox" name="sBlockWiegandChannel">
+        <item row="8" column="0">
+         <widget class="QCheckBox" name="sIgnoreCardReader">
           <property name="text">
-           <string>sBlockWiegandChannel</string>
+           <string>sIgnoreCardReader</string>
           </property>
          </widget>
+        </item>
+        <item row="7" column="0">
+         <widget class="QLabel" name="label_22">
+          <property name="text">
+           <string>sBlockWiegandChannel:</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QGroupBox" name="card_group">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>260</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="title">
+        <string>Сервисные карты</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_10">
+          <property name="text">
+           <string>Выше порога:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_11">
+          <property name="text">
+           <string>Некорректный:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="sWgMoreCardId"/>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_9">
+          <property name="text">
+           <string>Ниже порога:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="sWgSkipAlcoTest"/>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLineEdit" name="sWgTimeout97"/>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLineEdit" name="sWgLessCardId"/>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="sWgServiceError"/>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="label_13">
+          <property name="text">
+           <string>Без тестирования:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="1">
+         <spacer name="verticalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="label_14">
+          <property name="text">
+           <string>Сервисная ошибка:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Таймаут:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="sWgIncorrectCardId"/>
         </item>
        </layout>
       </widget>
@@ -689,7 +709,7 @@
     <property name="geometry">
      <rect>
       <x>590</x>
-      <y>578</y>
+      <y>670</y>
       <width>571</width>
       <height>64</height>
      </rect>
@@ -715,17 +735,17 @@
       <widget class="QComboBox" name="channel_number">
        <item>
         <property name="text">
-         <string>reader_1</string>
+         <string>1</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>reader_2</string>
+         <string>2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>reader_255</string>
+         <string>255</string>
         </property>
        </item>
       </widget>
@@ -779,7 +799,7 @@
       <x>590</x>
       <y>10</y>
       <width>571</width>
-      <height>561</height>
+      <height>611</height>
      </rect>
     </property>
     <property name="title">
@@ -804,7 +824,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>650</y>
+      <y>740</y>
       <width>1151</width>
       <height>191</height>
      </rect>
@@ -822,7 +842,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>478</y>
+      <y>570</y>
       <width>571</width>
       <height>93</height>
      </rect>
@@ -831,18 +851,32 @@
      <string>GPIO</string>
     </property>
     <layout class="QGridLayout" name="gridLayout_9">
-     <item row="0" column="2">
+     <item row="1" column="0">
+      <widget class="QLabel" name="label_16">
+       <property name="text">
+        <string>GPIO_2</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
       <widget class="QLineEdit" name="gpio_1_duration">
        <property name="text">
         <string>1000</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="gpio_2_duration">
-       <property name="text">
-        <string>1000</string>
-       </property>
+     <item row="0" column="2">
+      <widget class="QComboBox" name="sGpio_1_mode">
+       <item>
+        <property name="text">
+         <string>impulse</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>potential</string>
+        </property>
+       </item>
       </widget>
      </item>
      <item row="0" column="0">
@@ -852,21 +886,35 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="3">
+     <item row="1" column="2">
+      <widget class="QComboBox" name="sGpio_2_mode">
+       <item>
+        <property name="text">
+         <string>impulse</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>potential</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="0" column="4">
       <widget class="QPushButton" name="pushGPIO_1">
        <property name="text">
         <string>Включить</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_16">
+     <item row="1" column="3">
+      <widget class="QLineEdit" name="gpio_2_duration">
        <property name="text">
-        <string>GPIO_2</string>
+        <string>1000</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="3">
+     <item row="1" column="4">
       <widget class="QPushButton" name="pushGPIO_2">
        <property name="text">
         <string>Включить</string>
@@ -874,39 +922,29 @@
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="QComboBox" name="sGpio_1_mode">
+      <widget class="QComboBox" name="sGpio_1_enabled">
        <item>
         <property name="text">
-         <string>disabled</string>
+         <string>true</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>impulse</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>potential</string>
+         <string>false</string>
         </property>
        </item>
       </widget>
      </item>
      <item row="1" column="1">
-      <widget class="QComboBox" name="sGpio_2_mode">
+      <widget class="QComboBox" name="sGpio_2_enabled">
        <item>
         <property name="text">
-         <string>disabled</string>
+         <string>true</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>impulse</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>potential</string>
+         <string>false</string>
         </property>
        </item>
       </widget>
@@ -919,7 +957,7 @@
       <x>1170</x>
       <y>10</y>
       <width>431</width>
-      <height>831</height>
+      <height>881</height>
      </rect>
     </property>
     <property name="title">
@@ -931,7 +969,7 @@
        <x>10</x>
        <y>30</y>
        <width>411</width>
-       <height>791</height>
+       <height>841</height>
       </rect>
      </property>
     </widget>
